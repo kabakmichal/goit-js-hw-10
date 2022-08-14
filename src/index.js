@@ -30,7 +30,7 @@ const searchCountry = (event) => {
     } else if (country.length === 1) {
       clearContent(countryList.innerHTML);
       renderCountryInfo(country);
-    } else if (country.length > 1 && country.length <= 10) {
+    } else if ((country.length > 1) && (country.length <= 10)) {
       clearContent(countryInfo.innerHTML);
       renderCountryList(country);
     }
@@ -44,8 +44,8 @@ const searchCountry = (event) => {
 
 //==========RENDERING 1 COUNTRY=========================
 const renderCountryList = country => {
-  const markup = country.map(({ name, flag }) => {
-    return `<li><img src="${flag.svg}" alt="${name.official}" width="100" height="60">${name.official}</li>`;
+  const markup = country.map(({ name, flags }) => {
+    return `<li><img src="${flags.svg}" alt="${name.official}" width="100" height="60">${name.official}</li>`;
   })
     .join('');
   countryList.innerHTML = markup;
@@ -53,8 +53,9 @@ const renderCountryList = country => {
 
 //=========RENDERING 4 OR LESS COUNTRIES=================
 const renderCountryInfo = country => {
-  const markup = country.map(({ name, capital, population, flag, languages }) => {
-    return `<h1><img src="${flag.svg}" alt="${name.official
+  const markup = country
+    .map(({ name, capital, population, flags, languages }) => {
+    return `<h1><img src="${flags.svg}" alt="${name.official
       }" width="100" height="60">${name.official}</h1>
       <p><span>Capital: </span>${capital}</p>
       <p><span>Population:</span> ${population}</p>
